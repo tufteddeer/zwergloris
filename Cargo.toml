@@ -1,0 +1,13 @@
+[package]
+name = "zwergloris"
+version = "0.1.0"
+authors = ["tufteddeer <tufteddeer@disroot.org>"]
+edition = "2018"
+
+description = "Slowloris Dos attack implementation"
+license = "MIT"
+license-file = "LICENSE"
+repository = "https://github.com/tufteddeer/zwergloris"
+
+[dependencies]
+clap = "2.33.1"

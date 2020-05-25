@@ -1,0 +1,25 @@
+= Zwergloris
+
+Zwergloris is a basic implementation of the link:https://en.wikipedia.org/wiki/Slowloris_(computer_security)[Slowloris] DoS attack.
+
+It works great against _Apache/2.4.41_ with the _reqtimeout_ plugin disabled.
+If the plugin is enabled (like it is with the default installation), the attack will succeed for a certain amount of time until the connections are closed.
+It then tries to create new connections (see <<Issues>>).
+
+This was hacked together relatively quickly and just for fun. It's also one of the few things I did in rust, so the code may not be the nicest thing ever.
+
+Please be nice and use this tool only against your own services.
+
+== Usage
+
+[source, shell]
+----
+zwergloris --target 127.0.0.1:80
+----
+
+To specify the number of connections and the time to wait until new data is send, see `zwergloris --help`
+
+== Issues
+
+* closed connections are only detected when we try to send data, so when the server closes the connection, there is a time frame where the server is operating normal until the next tick
+* the current values for the interval and number of connections seem to work, but it would be nice to find some sane defaults
